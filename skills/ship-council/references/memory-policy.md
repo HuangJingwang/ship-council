@@ -48,6 +48,19 @@ Treat the user's wording as an explicit memory request when they say things like
 
 Small preferences become future regressions when they affect repeated development behavior. If the preference changes how future tasks should be planned, implemented, reviewed, or verified, capture it as a memory suggestion.
 
+## Red Flags
+
+These thoughts mean STOP; you are rationalizing around memory discipline:
+
+| Thought | Reality |
+| --- | --- |
+| "This is obvious enough to remember." | Chat history is not durable memory. Write a memory suggestion. |
+| "I'll record it at the end." | Explicit memory requests should be captured when they appear. |
+| "The new rule is clearly better." | Do not replace old rules without user choice. |
+| "This conflict is minor." | Minor ordering or command differences can break verification. Ask. |
+| "The current task is unrelated." | Reusable project constraints belong in memory even when discovered during another task. |
+| "I can summarize the old rule loosely." | Quote or precisely paraphrase the existing rule before asking the user to choose. |
+
 When this happens:
 
 1. Convert the request into a concrete proposed memory entry.
@@ -55,6 +68,34 @@ When this happens:
 3. Check existing memory for overlapping or conflicting rules before writing.
 4. In semi-auto mode, ask the user to approve the memory update.
 5. In auto mode, write only when automatic memory updates were explicitly allowed and no conflict exists.
+
+## Required Checklist
+
+Before updating long-term memory, you MUST complete these steps:
+
+1. Identify the exact reusable rule.
+2. Choose the target memory file.
+3. Read the existing target memory file.
+4. Read related memory files when the rule touches verification, security, coding style, surfaces, or decisions.
+5. Run or perform conflict detection.
+6. Record conflict status in `memory-suggestions.md`.
+7. Ask for user approval when required.
+8. Only then write `.ship-council/memory/...`.
+
+Cannot complete every step? Do not write long-term memory yet.
+
+## Decision Table
+
+| Situation | Action |
+| --- | --- |
+| No related memory exists | Propose a new memory entry. |
+| The same rule already exists | Do not duplicate it; record that memory is already covered. |
+| Proposed rule adds detail to an existing rule | Merge only if compatible; otherwise ask. |
+| Proposed rule contradicts an existing rule | Ask the user to keep, replace, merge, or reject. |
+| Existing rule is broader than proposed rule | Add the new rule as an exception only with user approval. |
+| Current code contradicts memory | Treat memory as possibly stale and ask before changing it. |
+| Proposed rule includes secrets or credentials | Do not store it; ask for a redacted process instead. |
+| Proposed rule is temporary or task-only | Keep it in task artifacts, not long-term memory. |
 
 ## Task End
 
@@ -87,6 +128,53 @@ Before writing any long-term memory update:
 5. If there is a possible conflict, record it in `memory-suggestions.md` and ask the user to choose.
 
 Do not silently overwrite, delete, or supersede an existing memory rule.
+
+## Examples And Non-Examples
+
+### Example: New Verification Recipe
+
+User says: "Before e2e tests, always start the API server, then the web app."
+
+Good:
+
+- propose an update to `verification-recipes.md`;
+- check for existing e2e startup rules;
+- record `Conflict status: none found` or list conflicts;
+- ask for approval before writing in semi-auto mode.
+
+Bad:
+
+- remember it only in chat;
+- run tests differently next time without writing project memory.
+
+### Example: Conflicting Order
+
+Existing memory says: "Before e2e tests, start backend before frontend."
+
+User says: "From now on, start frontend before backend for e2e."
+
+Good:
+
+- mark this as a possible direct conflict;
+- show both rules;
+- ask the user to keep, replace, merge with conditions, or reject both.
+
+Bad:
+
+- overwrite the old rule because the new one is more recent;
+- keep both rules without explaining when each applies.
+
+### Non-Example: One-Off Detail
+
+User says: "For this one bug, try running the test once with debug logs."
+
+Good:
+
+- keep it in `verification-report.md` or task notes.
+
+Bad:
+
+- store it as a long-term verification recipe.
 
 ## Conflict Resolution
 
