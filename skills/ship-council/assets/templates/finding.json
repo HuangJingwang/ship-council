@@ -1,0 +1,12 @@
+{
+  "id": "SC-001",
+  "stage": "review",
+  "target_surface": "unknown",
+  "severity": "medium",
+  "category": "unspecified",
+  "files": [],
+  "evidence": "",
+  "required_change": "",
+  "acceptance": "",
+  "status": "open"
+}

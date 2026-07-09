@@ -1,0 +1,13 @@
+{
+  "task_id": "",
+  "mode": "semi-auto",
+  "state": "INTAKE",
+  "loop_index": 0,
+  "loop_limit": 3,
+  "surfaces": [],
+  "memory_loaded": false,
+  "memory_update_policy": "suggest-only",
+  "blocked": false,
+  "blockers": [],
+  "created_at": ""
+}
