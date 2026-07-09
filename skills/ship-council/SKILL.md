@@ -86,6 +86,7 @@ At task start, read existing `.ship-council/memory/*.md` when present. At task e
 - Research agents gather sourced facts and do not edit project code.
 - Proposal critic agents are read-only counterweights. They score proposals and recommend approve, revise, or block.
 - Review and security agents are read-only verifiers. They output findings, not patches.
+- Dependency, data migration, external service, rollout observability, and memory agents are on-demand specialists. Prefer them for focused risk review instead of bloating developer scopes.
 - Verification agents run commands and record evidence. They do not claim success without output.
 - Prefer filesystem artifacts over paraphrased agent summaries. Agents write files; the orchestrator reads files.
 
@@ -150,3 +151,8 @@ Use `references/agent-briefs/` when dispatching subagents:
 - `review-agent.md`
 - `security-agent.md`
 - `verification-agent.md`
+- `dependency-agent.md`
+- `data-migration-agent.md`
+- `external-service-agent.md`
+- `rollout-observability-agent.md`
+- `memory-agent.md`

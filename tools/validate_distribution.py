@@ -49,6 +49,24 @@ def validate_skill() -> None:
     ):
         if not path.exists():
             fail(f"missing expected skill file: {path.relative_to(ROOT)}")
+    expected_briefs = {
+        "research-agent.md",
+        "proposal-critic-agent.md",
+        "surface-developer-agent.md",
+        "review-agent.md",
+        "security-agent.md",
+        "verification-agent.md",
+        "dependency-agent.md",
+        "data-migration-agent.md",
+        "external-service-agent.md",
+        "rollout-observability-agent.md",
+        "memory-agent.md",
+    }
+    briefs_dir = SKILL / "references" / "agent-briefs"
+    existing_briefs = {path.name for path in briefs_dir.glob("*.md")}
+    missing_briefs = sorted(expected_briefs - existing_briefs)
+    if missing_briefs:
+        fail(f"missing agent briefs: {', '.join(missing_briefs)}")
 
 
 def validate_plugin_manifest() -> None:

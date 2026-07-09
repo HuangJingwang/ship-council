@@ -35,6 +35,7 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 - PRD, impact analysis, research, deliberation, contract, test plan, implementation plan, verification report, and final report templates
 - Independent proposal critic to reduce sycophancy and weak plans
 - Read-only review and security gates
+- Core and specialist agent briefs for research, critique, surface development, review, security, verification, dependency, migration, external service, rollout, observability, and memory work
 - Fix packets that turn findings into bounded implementation work
 - Surface detection and command discovery scripts
 - Long-term memory templates for project constraints, commands, decisions, and lessons learned
