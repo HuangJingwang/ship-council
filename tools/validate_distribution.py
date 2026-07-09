@@ -1,0 +1,140 @@
+#!/usr/bin/env python3
+"""Validate Ship Council packaging without machine-local dependencies."""
+
+from __future__ import annotations
+
+import json
+import shutil
+import subprocess
+import tempfile
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SKILL = ROOT / "skills" / "ship-council"
+
+
+def fail(message: str) -> None:
+    raise SystemExit(message)
+
+
+def load_json(path: Path) -> dict:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001 - script should print a concise failure
+        fail(f"{path}: invalid JSON: {exc}")
+    if not isinstance(payload, dict):
+        fail(f"{path}: expected JSON object")
+    return payload
+
+
+def validate_skill() -> None:
+    skill_md = SKILL / "SKILL.md"
+    text = skill_md.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        fail("SKILL.md must start with YAML frontmatter")
+    end = text.find("\n---", 4)
+    if end == -1:
+        fail("SKILL.md frontmatter is not closed")
+    frontmatter = text[4:end]
+    for field in ("name:", "description:"):
+        if field not in frontmatter:
+            fail(f"SKILL.md missing frontmatter field {field}")
+    for path in (
+        SKILL / "references" / "memory-policy.md",
+        SKILL / "references" / "agent-topology.md",
+        SKILL / "assets" / "templates" / "proposal-critique.md",
+        SKILL / "scripts" / "init_task.py",
+        SKILL / "scripts" / "check_memory_conflicts.py",
+    ):
+        if not path.exists():
+            fail(f"missing expected skill file: {path.relative_to(ROOT)}")
+
+
+def validate_plugin_manifest() -> None:
+    manifest_path = ROOT / ".codex-plugin" / "plugin.json"
+    manifest = load_json(manifest_path)
+    required = ("name", "version", "description", "author", "skills", "interface")
+    for field in required:
+        if field not in manifest:
+            fail(f"{manifest_path}: missing {field}")
+    if manifest["name"] != "ship-council":
+        fail("plugin name must be ship-council")
+    if manifest["skills"] != "./skills/":
+        fail("plugin skills path must be ./skills/")
+    if not (ROOT / manifest["skills"]).is_dir():
+        fail("plugin skills path does not exist")
+    interface = manifest["interface"]
+    for field in ("displayName", "shortDescription", "longDescription", "defaultPrompt"):
+        if field not in interface:
+            fail(f"{manifest_path}: missing interface.{field}")
+
+
+def validate_marketplace(path: Path, *, codex: bool) -> None:
+    data = load_json(path)
+    if data.get("name") != "ship-council":
+        fail(f"{path}: marketplace name must be ship-council")
+    plugins = data.get("plugins")
+    if not isinstance(plugins, list) or len(plugins) != 1:
+        fail(f"{path}: expected one plugin entry")
+    plugin = plugins[0]
+    if plugin.get("name") != "ship-council":
+        fail(f"{path}: plugin entry must be ship-council")
+    source = plugin.get("source")
+    rel = source.get("path") if isinstance(source, dict) else source
+    if rel != "./":
+        fail(f"{path}: source path must be ./")
+    if codex:
+        policy = plugin.get("policy")
+        if not isinstance(policy, dict):
+            fail(f"{path}: missing policy")
+        for field in ("installation", "authentication"):
+            if field not in policy:
+                fail(f"{path}: missing policy.{field}")
+
+
+def run_smoke_tests() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        repo = Path(tmp) / "repo"
+        repo.mkdir()
+        task_title = "distribution smoke"
+        task_output = subprocess.check_output(
+            ["python3", str(SKILL / "scripts" / "init_task.py"), str(repo), task_title],
+            text=True,
+        ).strip()
+        subprocess.check_call(
+            ["python3", str(SKILL / "scripts" / "validate_artifacts.py"), task_output]
+        )
+        subprocess.check_call(["python3", str(SKILL / "scripts" / "init_memory.py"), str(repo)])
+        memory_file = repo / ".ship-council" / "memory" / "verification-recipes.md"
+        with memory_file.open("a", encoding="utf-8") as handle:
+            handle.write("\n## Integration Tests\n\n- Before e2e tests, start backend before frontend.\n")
+        conflict = subprocess.check_output(
+            [
+                "python3",
+                str(SKILL / "scripts" / "check_memory_conflicts.py"),
+                str(repo),
+                "verification-recipes.md",
+                "--text",
+                "From now on, start frontend before backend for e2e.",
+            ],
+            text=True,
+        )
+        payload = json.loads(conflict)
+        if not payload["candidate_existing_rules"]:
+            fail("memory conflict smoke test did not find a candidate rule")
+    shutil.rmtree(ROOT / ".ship-council", ignore_errors=True)
+
+
+def main() -> None:
+    validate_skill()
+    validate_plugin_manifest()
+    validate_marketplace(ROOT / ".agents" / "plugins" / "marketplace.json", codex=True)
+    validate_marketplace(ROOT / ".claude-plugin" / "marketplace.json", codex=False)
+    load_json(ROOT / ".claude-plugin" / "plugin.json")
+    run_smoke_tests()
+    print("Ship Council distribution valid")
+
+
+if __name__ == "__main__":
+    main()

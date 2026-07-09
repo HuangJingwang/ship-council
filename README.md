@@ -51,12 +51,16 @@ codex plugin marketplace add HuangJingwang/ship-council
 
 Then open the Codex plugin directory, choose the Ship Council marketplace, and install `ship-council`.
 
+After installing, restart Codex or start a new thread so bundled skills are reloaded.
+
 ### Claude Code Plugin
 
 ```text
 /plugin marketplace add HuangJingwang/ship-council
 /plugin install ship-council@ship-council
 ```
+
+After installing, start a new Claude Code session before testing the skill.
 
 ### Manual Skill Install
 
@@ -220,6 +224,16 @@ python3 skills/ship-council/scripts/merge_findings.py <task-dir>
 - [Backend-only change](examples/backend-only.md)
 - [Web and backend change](examples/web-backend.md)
 - [Organization filter demo](demo/org-filter-demo.md)
+- [Full trace demo](demo/full-trace)
+
+## Troubleshooting
+
+| Problem | Fix |
+| --- | --- |
+| Plugin does not appear in Codex | Run `codex plugin marketplace list`, then restart Codex. |
+| Skill does not trigger automatically | Invoke it explicitly with `ship-council` or choose the bundled skill from the plugin. |
+| Updated plugin still shows old behavior | Upgrade the marketplace, reinstall the plugin, and start a new thread. |
+| Manual skill install not detected | Confirm `skills/ship-council/SKILL.md` is under your agent's skills directory and restart the agent. |
 
 ## Roadmap
 
