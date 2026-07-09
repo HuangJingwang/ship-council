@@ -1,0 +1,47 @@
+{
+  "name": "ship-council",
+  "version": "0.1.0",
+  "description": "Multi-agent delivery workflow for coordinated software changes.",
+  "author": {
+    "name": "HuangJingwang",
+    "email": "huangjingwang@huangjingwang.com",
+    "url": "https://github.com/HuangJingwang"
+  },
+  "homepage": "https://github.com/HuangJingwang/ship-council",
+  "repository": "https://github.com/HuangJingwang/ship-council",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "skills",
+    "agent-skills",
+    "multi-agent",
+    "software-delivery",
+    "workflow",
+    "review",
+    "verification"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ship Council",
+    "shortDescription": "Coordinate multi-agent software delivery.",
+    "longDescription": "Ship Council turns a software change request into a controlled delivery loop with intake, impact analysis, research, proposal critique, contracts, implementation, review, security checks, verification, and bounded fix loops.",
+    "developerName": "HuangJingwang",
+    "category": "Development",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Review",
+      "Security",
+      "Verification"
+    ],
+    "websiteURL": "https://github.com/HuangJingwang/ship-council",
+    "privacyPolicyURL": "https://github.com/HuangJingwang/ship-council#security",
+    "termsOfServiceURL": "https://github.com/HuangJingwang/ship-council#license",
+    "defaultPrompt": [
+      "Use ship-council to plan and implement this change.",
+      "Run ship-council in auto mode for up to 3 fix loops.",
+      "Use ship-council to review and verify this feature."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

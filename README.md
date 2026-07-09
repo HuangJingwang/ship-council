@@ -42,7 +42,24 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 
 ## Install
 
-### Codex
+### Codex Plugin
+
+```bash
+codex plugin marketplace add HuangJingwang/ship-council
+```
+
+Then open the Codex plugin directory, choose the Ship Council marketplace, and install `ship-council`.
+
+### Claude Code Plugin
+
+```text
+/plugin marketplace add HuangJingwang/ship-council
+/plugin install ship-council@ship-council
+```
+
+### Manual Skill Install
+
+#### Codex
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -52,7 +69,7 @@ cp -R /tmp/ship-council/skills/ship-council ~/.codex/skills/
 
 Restart Codex after installing.
 
-### Claude Code Or Other SKILL.md Agents
+#### Claude Code Or Other SKILL.md Agents
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -61,8 +78,6 @@ cp -R /tmp/ship-council/skills/ship-council ~/.claude/skills/
 ```
 
 For other agents, copy `skills/ship-council` into that agent's skills directory.
-
-Marketplace/plugin packaging is planned but not published yet.
 
 ## Use
 
@@ -173,6 +188,10 @@ By default, Ship Council suggests memory updates instead of silently writing lon
 ## Repository Layout
 
 ```text
+.codex-plugin/plugin.json
+.agents/plugins/marketplace.json
+.claude-plugin/plugin.json
+.claude-plugin/marketplace.json
 skills/ship-council/
   SKILL.md
   agents/openai.yaml
@@ -201,8 +220,6 @@ python3 skills/ship-council/scripts/merge_findings.py <task-dir>
 
 ## Roadmap
 
-- Codex plugin manifest
-- Claude Code plugin marketplace support
 - GitHub Action for validating skill packaging
 - More realistic demo traces
 - Optional visual report output

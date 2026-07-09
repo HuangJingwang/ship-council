@@ -1,0 +1,20 @@
+{
+  "name": "ship-council",
+  "description": "Ship Council plugin marketplace for Claude Code and compatible agents.",
+  "owner": {
+    "name": "HuangJingwang",
+    "email": "huangjingwang@huangjingwang.com"
+  },
+  "plugins": [
+    {
+      "name": "ship-council",
+      "description": "Multi-agent delivery workflow for coordinated software changes.",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "HuangJingwang",
+        "email": "huangjingwang@huangjingwang.com"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ship-council",
+  "description": "Multi-agent delivery workflow for coordinated software changes.",
+  "version": "0.1.0",
+  "author": {
+    "name": "HuangJingwang",
+    "email": "huangjingwang@huangjingwang.com"
+  },
+  "homepage": "https://github.com/HuangJingwang/ship-council",
+  "repository": "https://github.com/HuangJingwang/ship-council",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "codex",
+    "claude-code",
+    "multi-agent",
+    "software-delivery",
+    "workflow"
+  ]
+}
