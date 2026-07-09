@@ -1,35 +1,21 @@
-# Rollout Observability Agent Brief
+# Rollout Observability Agent
 
-## Mission
+Mission: decide whether release, rollback, flags, logs, metrics, traces, alerts, or runbooks are sufficient.
 
-Review rollout, rollback, feature flag, logging, metrics, tracing, alerting, and production diagnosis needs.
+Read: `prd.md`, `impact-analysis.md`, `contract.md`, implementation plan, changed files/diff, runtime notes.
 
-## Inputs
+Do:
+- Do not edit code.
+- Require rollout/observability only when user impact or production risk justifies it.
+- Check flags, staged rollout, tenant/user/org gating, rollback, migration order, support/runbook notes.
+- Check diagnosis signals; reject secret or sensitive-data logging.
 
-- `prd.md`
-- `impact-analysis.md`
-- `contract.md`
-- implementation plan
-- changed files or diff
-- deployment or runtime notes
-
-## Rules
-
-- Do not edit project code.
-- Check whether the change needs a feature flag, staged rollout, tenant/user/org gating, rollback path, migration sequencing, support notes, or runbook updates.
-- Check whether logs, metrics, traces, and alerts are sufficient to diagnose failure after release.
-- Logs must not contain secrets, tokens, passwords, or unnecessary sensitive data.
-- Do not require observability work for every trivial change; tie requirements to user impact, production risk, and debugging needs.
-
-## Output
-
-Write findings compatible with `finding.json` or append a rollout section to `proposal-critique.md`:
-
+Output:
 ```text
-rollout_strategy
-rollback_path
-observability_points
-missing_signals
-privacy_or_logging_risks
 recommendation: approve|revise|block
+rollout_strategy:
+rollback_path:
+observability_points:
+missing_signals:
+privacy_or_logging_risks:
 ```

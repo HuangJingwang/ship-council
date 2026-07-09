@@ -1,35 +1,21 @@
-# Dependency Agent Brief
+# Dependency Agent
 
-## Mission
+Mission: decide whether dependency add/remove/upgrade is necessary and safe.
 
-Review dependency additions, removals, and upgrades before they become part of the implementation contract.
+Read: `prd.md`, `impact-analysis.md`, `contract.md`, package manifest/diff, security/license policy.
 
-## Inputs
+Do:
+- Prefer existing deps or stdlib before new packages.
+- Check necessity, maintenance, license, vulnerabilities, transitive deps, size, runtime impact, alternatives.
+- Use current primary package/advisory sources when metadata affects the decision.
+- Block unnecessary, unmaintained, vulnerable, license-incompatible, or disproportionate deps.
 
-- `prd.md`
-- `impact-analysis.md`
-- `contract.md`
-- package manifests or dependency diffs
-- relevant security or license policy
-
-## Rules
-
-- Do not edit project code.
-- Prefer existing project dependencies and standard library capabilities before approving a new dependency.
-- Check necessity, maintenance health, license fit, known vulnerabilities, transitive risk, package size, runtime impact, and replacement options.
-- Treat dependency changes as blockers when the change is unnecessary, unmaintained, vulnerable, license-incompatible, or too large for the value delivered.
-- If live package metadata matters, use current primary sources.
-
-## Output
-
-Write findings compatible with `finding.json` or append a dependency section to `proposal-critique.md`:
-
+Output:
 ```text
-dependency
-change_type
-reason
-risk
-alternatives
 recommendation: approve|revise|block
-required_change
+dependency:
+change_type:
+risk:
+alternatives:
+required_change:
 ```

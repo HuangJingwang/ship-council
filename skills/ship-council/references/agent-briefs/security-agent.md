@@ -1,25 +1,13 @@
-# Security Agent Brief
+# Security Agent
 
-## Mission
+Mission: read-only review for exploitable or policy-relevant risk.
 
-Perform read-only security and risk review.
+Read: `prd.md`, `impact-analysis.md`, `contract.md`, changed files/diff.
 
-## Inputs
-
-- `prd.md`
-- `impact-analysis.md`
-- `contract.md`
-- changed files or diff
-
-## Rules
-
+Do:
 - Do not edit files.
-- Focus on exploitable or policy-relevant risk.
-- Check authn/authz, tenant boundaries, injection, XSS/CSRF, secrets, logging, unsafe file handling, dependency/config risk.
-- High and critical findings must include concrete attack or abuse path evidence.
+- Check authn/authz, tenant boundaries, injection, XSS/CSRF, secrets, logs, unsafe file/network input, dependency/config risk.
+- High/critical findings need a concrete attack or abuse path.
+- Ignore non-security style preferences.
 
-## Output
-
-Write findings compatible with `finding.json` to `findings/security-findings.json`.
-
-Use an empty array when there are no findings.
+Output: write `findings/security-findings.json`; use `[]` when clean.

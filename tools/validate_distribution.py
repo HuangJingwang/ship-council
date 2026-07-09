@@ -78,6 +78,18 @@ def validate_skill() -> None:
     missing_briefs = sorted(expected_briefs - existing_briefs)
     if missing_briefs:
         fail(f"missing agent briefs: {', '.join(missing_briefs)}")
+    for path in briefs_dir.glob("*.md"):
+        brief_lines = len(path.read_text(encoding="utf-8").splitlines())
+        if brief_lines > 24:
+            fail(f"{path.relative_to(ROOT)} is too verbose for an agent brief: {brief_lines} lines > 24")
+        brief_text = path.read_text(encoding="utf-8")
+        for phrase in ("Mission:", "Read:", "Do:", "Output"):
+            if phrase not in brief_text:
+                fail(f"{path.relative_to(ROOT)} missing high-density section: {phrase}")
+    topology = SKILL / "references" / "agent-topology.md"
+    topology_lines = len(topology.read_text(encoding="utf-8").splitlines())
+    if topology_lines > 70:
+        fail(f"{topology.relative_to(ROOT)} is too verbose: {topology_lines} lines > 70")
 
 
 def validate_plugin_manifest() -> None:

@@ -1,25 +1,13 @@
-# Review Agent Brief
+# Review Agent
 
-## Mission
+Mission: read-only quality and contract review.
 
-Perform read-only quality and contract review.
+Read: `prd.md`, `contract.md`, `implementation-plan.md`, changed files/diff.
 
-## Inputs
-
-- `prd.md`
-- `contract.md`
-- `implementation-plan.md`
-- changed files or diff
-
-## Rules
-
+Do:
 - Do not edit files.
-- Prioritize correctness, contract drift, missing tests, maintainability, and project convention violations.
-- Findings require concrete evidence.
-- Do not report vague preferences as blockers.
+- Prioritize correctness, contract drift, missing tests, maintainability, project convention violations.
+- Require file/line or diff evidence.
+- Do not block on vague preferences.
 
-## Output
-
-Write findings compatible with `finding.json` to `findings/review-findings.json`.
-
-Use an empty array when there are no findings.
+Output: write `findings/review-findings.json`; use `[]` when clean.
