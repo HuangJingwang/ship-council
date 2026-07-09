@@ -1,18 +1,19 @@
 # Ship Council
 
-> Multi-agent delivery workflow for Codex and SKILL.md-compatible coding agents.
+> Context-light delivery workflow for Codex and SKILL.md-compatible coding agents.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-black)](https://developers.openai.com/codex/skills)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-SKILL.md-blue)](https://agentskills.io)
 
-Ship Council turns one software change request into a disciplined delivery loop:
+Ship Council starts light, then adds structure only when the change deserves it:
 
 ```text
-intake -> impact -> research -> debate -> critique -> contract -> test plan -> build -> review -> secure -> verify -> fix -> ship
+quick scope -> implement -> review -> verify
+standard/full risk -> contract -> agents -> critique -> review -> secure -> verify -> fix -> ship
 ```
 
-It is built for the part of AI coding that usually gets messy: cross-surface changes, hidden risks, vague handoffs, skipped verification, and agents that agree too quickly.
+It is built for the part of AI coding that usually gets messy: cross-surface changes, hidden risks, vague handoffs, skipped verification, and agents that agree too quickly. It deliberately avoids loading every prompt, template, and agent brief up front.
 
 ## Why Ship Council
 
@@ -32,6 +33,7 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 ## What You Get
 
 - Multi-surface orchestration for backend, web, mobile, desktop, data, infra, docs, and tests
+- Quick, standard, and full profiles so small changes do not pay the full workflow cost
 - PRD, impact analysis, research, deliberation, contract, test plan, implementation plan, verification report, and final report templates
 - Independent proposal critic to reduce sycophancy and weak plans
 - Read-only review and security gates
@@ -87,7 +89,13 @@ For other agents, copy `skills/ship-council` into that agent's skills directory.
 
 ## Use
 
-Ask your agent to use the skill:
+Ask your agent to use the skill. For small tasks, prefer the quick profile:
+
+```text
+Use ship-council in quick profile to fix this backend validation bug.
+```
+
+For normal feature work:
 
 ```text
 Use ship-council to implement organization filtering in the work item list.
@@ -107,6 +115,21 @@ Use ship-council to redesign the onboarding flow. Route visual decisions through
 
 ## Modes
 
+Ship Council has two separate controls:
+
+- **Profile** controls prompt weight and workflow depth: `quick`, `standard`, or `full`.
+- **Mode** controls autonomy: `semi-auto` or `auto`.
+
+## Profiles
+
+| Profile | Use When | Behavior |
+| --- | --- | --- |
+| Quick | Small, single-surface, low-risk change | No full council ceremony; implement, self-review, verify |
+| Standard | Normal feature/fix with some risk | Minimal task workspace, surface discovery, short contract, review, verification |
+| Full | Multi-surface, data/security/migration/release risk | Deliberation, proposal critic, specialist agents, security, docs, bounded fix loops, memory capture |
+
+Default behavior is intentionally light. The agent should not read every reference or spawn every agent unless the task risk justifies it.
+
 | Mode | Use When | Behavior |
 | --- | --- | --- |
 | Semi-auto | You want approval checkpoints | Stops after PRD, contract, high-risk findings, repeated loop failure, and final report |
@@ -116,7 +139,7 @@ Use ship-council to redesign the onboarding flow. Route visual decisions through
 
 ```mermaid
 flowchart LR
-  A["Intake"] --> B["Surface Discovery"]
+  A["Profile Selection"] --> B["Surface Discovery"]
   B --> C["Impact Analysis"]
   C --> D["Research"]
   D --> E["Deliberation"]
@@ -178,6 +201,7 @@ If a new rule conflicts with existing memory, Ship Council must show both rules 
 
 ## Design Principles
 
+- Start light.
 - Debate before coding.
 - Independent critique before major approval.
 - Contract before parallel work.
@@ -191,6 +215,7 @@ If a new rule conflicts with existing memory, Ship Council must show both rules 
 - Design-heavy web/mobile tasks route to specialist design guidance instead of inventing generic UI.
 - Reusable constraints become explicit memory suggestions.
 - Loops have a time-to-live.
+- References are loaded one or two at a time, never all at once.
 
 ## Repository Layout
 

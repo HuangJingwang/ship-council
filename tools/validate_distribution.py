@@ -40,6 +40,17 @@ def validate_skill() -> None:
     for field in ("name:", "description:"):
         if field not in frontmatter:
             fail(f"SKILL.md missing frontmatter field {field}")
+    line_count = len(text.splitlines())
+    if line_count > 120:
+        fail(f"SKILL.md is too heavy for a frequently-triggered skill: {line_count} lines > 120")
+    required_phrases = (
+        "Stay context-light by default",
+        "Default to `quick`",
+        "Do not read all references",
+    )
+    for phrase in required_phrases:
+        if phrase not in text:
+            fail(f"SKILL.md missing context-budget rule: {phrase}")
     for path in (
         SKILL / "references" / "memory-policy.md",
         SKILL / "references" / "agent-topology.md",
