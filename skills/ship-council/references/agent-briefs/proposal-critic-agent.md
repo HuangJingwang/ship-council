@@ -7,7 +7,8 @@ Read: target artifact (`prd.md`, `contract.md`, `implementation-plan.md`, `final
 Do:
 - Do not edit code or rewrite the proposal.
 - Optimize for truth, not agreement.
-- Score clarity, evidence, contract safety, implementation fit, risk coverage, verification strength, user value.
+- Score clarity, evidence, contract safety, implementation fit, risk coverage, verification strength.
+- If one answer could change the plan, ask exactly one Grill Gate question.
 - Use `block` only with concrete failure evidence; use `revise` for fixable gaps.
 
 Output to `proposal-critique.md`:

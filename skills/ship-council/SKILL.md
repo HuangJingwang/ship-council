@@ -44,6 +44,8 @@ For `standard` and `full`, do not implement until these exist, even if short:
 
 For `full`, also require impact analysis, proposal critique, and explicit fix-loop policy. Read `references/state-machine.md` only when transitions or stop conditions are non-trivial.
 
+Before `standard` or `full` freezes a contract, use `references/grill-gate.md` only when a key unknown could change scope, contract, risk, or acceptance criteria.
+
 ## Agent Routing
 
 Read `references/agent-topology.md` only before spawning multiple agents. Then load only the needed brief from `references/agent-briefs/`.
@@ -63,6 +65,8 @@ Never run parallel developers on overlapping files. Prefer read-only specialists
 Load exactly one or two references at a time:
 
 - Surfaces unclear: `references/surface-detection.md`, then `references/surface-playbooks.md`.
+- Unsure what to load or context is getting heavy: `references/context-loading.md`.
+- Key unknown before contract or approval: `references/grill-gate.md`.
 - UI/design task: `references/design-skill-integration.md`.
 - Contracts or caller risk: `references/impact-analysis.md`.
 - Proposal approval: `references/proposal-critique-policy.md`.

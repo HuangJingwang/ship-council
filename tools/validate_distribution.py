@@ -54,6 +54,8 @@ def validate_skill() -> None:
     for path in (
         SKILL / "references" / "memory-policy.md",
         SKILL / "references" / "agent-topology.md",
+        SKILL / "references" / "context-loading.md",
+        SKILL / "references" / "grill-gate.md",
         SKILL / "assets" / "templates" / "proposal-critique.md",
         SKILL / "scripts" / "init_task.py",
         SKILL / "scripts" / "check_memory_conflicts.py",
@@ -90,6 +92,18 @@ def validate_skill() -> None:
     topology_lines = len(topology.read_text(encoding="utf-8").splitlines())
     if topology_lines > 70:
         fail(f"{topology.relative_to(ROOT)} is too verbose: {topology_lines} lines > 70")
+    reference_limits = {
+        "context-loading.md": 60,
+        "grill-gate.md": 40,
+    }
+    for name, limit in reference_limits.items():
+        ref = SKILL / "references" / name
+        ref_lines = len(ref.read_text(encoding="utf-8").splitlines())
+        if ref_lines > limit:
+            fail(f"{ref.relative_to(ROOT)} is too verbose: {ref_lines} lines > {limit}")
+    for phrase in ("references/context-loading.md", "references/grill-gate.md"):
+        if phrase not in text:
+            fail(f"SKILL.md missing route: {phrase}")
 
 
 def validate_plugin_manifest() -> None:

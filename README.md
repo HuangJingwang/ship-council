@@ -36,6 +36,7 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 - Quick, standard, and full profiles so small changes do not pay the full workflow cost
 - PRD, impact analysis, research, deliberation, contract, test plan, implementation plan, verification report, and final report templates
 - Independent proposal critic to reduce sycophancy and weak plans
+- Grill Gate questioning for the one unknown that can change the plan
 - Read-only review and security gates
 - High-density core and specialist agent briefs for research, critique, surface development, review, security, verification, dependency, migration, external service, rollout, observability, and memory work
 - Fix packets that turn findings into bounded implementation work
@@ -43,6 +44,7 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 - Long-term memory templates for project constraints, commands, decisions, and lessons learned
 - Memory conflict checks before writing new long-term rules
 - Design-skill routing for web and mobile UI tasks
+- Context-loading policy so unused references and agent briefs stay unloaded
 
 ## Install
 
@@ -113,6 +115,12 @@ For design-heavy UI work:
 Use ship-council to redesign the onboarding flow. Route visual decisions through the design skill integration and require screenshot verification.
 ```
 
+For plan stress-testing before implementation:
+
+```text
+Use ship-council standard profile and run Grill Gate before freezing the contract.
+```
+
 ## Modes
 
 Ship Council has two separate controls:
@@ -129,6 +137,31 @@ Ship Council has two separate controls:
 | Full | Multi-surface, data/security/migration/release risk | Deliberation, proposal critic, specialist agents, security, docs, bounded fix loops, memory capture |
 
 Default behavior is intentionally light. The agent should not read every reference or spawn every agent unless the task risk justifies it.
+
+## Context Loading
+
+Ship Council is intentionally split into many files, but they are not meant to load together.
+
+The loading model is:
+
+```text
+metadata -> SKILL.md -> 0-2 triggered references -> exact agent brief only if a worker is dispatched
+```
+
+Practical rules:
+
+- `quick` should usually read only `SKILL.md`.
+- `standard` reads only the references needed for the current phase.
+- `full` can use more references, but still one phase at a time.
+- agent briefs load only for the exact agent being used.
+- templates and assets are copied by scripts, not read into context by default.
+- `references/context-loading.md` exists for routing audits and context bloat debugging.
+
+## Grill Gate
+
+Grill Gate borrows the useful part of `grill-me`: one sharp question at a time.
+
+It runs only when one unresolved answer could change scope, contract, risk, test plan, rollout, or acceptance criteria. It must search the repo first, ask one question, explain why it matters, and stop after the riskiest branch is resolved.
 
 | Mode | Use When | Behavior |
 | --- | --- | --- |
@@ -204,6 +237,7 @@ If a new rule conflicts with existing memory, Ship Council must show both rules 
 - Start light.
 - Debate before coding.
 - Independent critique before major approval.
+- One sharp question beats a broad questionnaire.
 - Contract before parallel work.
 - Impact analysis before contract.
 - Test strategy before implementation.
