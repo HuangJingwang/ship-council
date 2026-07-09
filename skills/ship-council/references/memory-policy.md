@@ -28,6 +28,10 @@ At task start:
 
 ## Explicit Memory Capture
 
+<MEMORY-CAPTURE-GATE>
+When the user asks to preserve a reusable preference, workflow, command order, verification recipe, constraint, or forbidden pattern, treat it as a memory-capture event. Do not leave it only in chat history.
+</MEMORY-CAPTURE-GATE>
+
 Treat the user's wording as an explicit memory request when they say things like:
 
 - "remember this";
@@ -39,6 +43,10 @@ Treat the user's wording as an explicit memory request when they say things like
 - "this is the required flow";
 - "do not do X again";
 - "use this as the rule".
+
+## Anti-Pattern: "This Is Just A Small Preference"
+
+Small preferences become future regressions when they affect repeated development behavior. If the preference changes how future tasks should be planned, implemented, reviewed, or verified, capture it as a memory suggestion.
 
 When this happens:
 
@@ -59,6 +67,10 @@ At task end:
 5. In auto mode, do not update long-term memory unless the user explicitly allowed automatic memory writes.
 
 ## Conflict Detection
+
+<MEMORY-CONFLICT-GATE>
+Do NOT update long-term memory until the target memory file and related memory files have been checked for conflicts. If a possible conflict exists, do NOT overwrite, delete, or supersede the existing rule. Ask the user to choose keep, replace, merge, or reject.
+</MEMORY-CONFLICT-GATE>
 
 Before writing any long-term memory update:
 
