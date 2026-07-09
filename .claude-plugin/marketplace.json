@@ -9,7 +9,7 @@
     {
       "name": "ship-council",
       "description": "Multi-agent delivery workflow for coordinated software changes.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./",
       "author": {
         "name": "HuangJingwang",
