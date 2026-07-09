@@ -77,7 +77,7 @@ Create a task workspace in the target repository:
 
 Use `scripts/init_task.py` to create this layout and copy templates. Use `scripts/init_memory.py` to create `.ship-council/memory/` if missing. Use `scripts/detect_surfaces.py` to seed `surface-map.md`. Use `scripts/discover_commands.py` to seed `environment-report.md`.
 
-At task start, read existing `.ship-council/memory/*.md` when present. At task end, write `memory-suggestions.md`. Do not update long-term memory without user approval unless the user explicitly requested fully automatic memory updates.
+At task start, read existing `.ship-council/memory/*.md` when present. At task end, write `memory-suggestions.md`. When the user explicitly says to remember a preference, workflow, or constraint, capture it as a memory suggestion immediately. Do not update long-term memory without user approval unless the user explicitly requested fully automatic memory updates. Never overwrite conflicting memory silently; ask the user to choose which rule to keep, replace, or merge.
 
 ## Agent Rules
 
@@ -136,6 +136,7 @@ Load only what is needed:
 - `scripts/init_memory.py <repo>` creates `.ship-council/memory/...` from templates.
 - `scripts/detect_surfaces.py <repo>` prints JSON surface evidence.
 - `scripts/discover_commands.py <repo>` prints candidate install/build/test/start commands.
+- `scripts/check_memory_conflicts.py <repo> <target-memory-file> --text "<proposed rule>"` surfaces nearby existing memory rules before writing.
 - `scripts/validate_artifacts.py <task-dir>` checks required artifacts and finding JSON.
 - `scripts/merge_findings.py <task-dir>` converts open findings into fix packet drafts.
 

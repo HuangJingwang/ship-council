@@ -38,6 +38,7 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 - Fix packets that turn findings into bounded implementation work
 - Surface detection and command discovery scripts
 - Long-term memory templates for project constraints, commands, decisions, and lessons learned
+- Memory conflict checks before writing new long-term rules
 - Design-skill routing for web and mobile UI tasks
 
 ## Install
@@ -168,6 +169,7 @@ Long-term project knowledge can live beside task history:
 ```
 
 By default, Ship Council suggests memory updates instead of silently writing long-term memory.
+If a new rule conflicts with existing memory, Ship Council must show both rules and ask which one to keep, replace, or merge.
 
 ## Design Principles
 
@@ -206,6 +208,7 @@ skills/ship-council/
 ```bash
 python3 skills/ship-council/scripts/init_task.py <repo> "task title"
 python3 skills/ship-council/scripts/init_memory.py <repo>
+python3 skills/ship-council/scripts/check_memory_conflicts.py <repo> verification-recipes.md --text "rule"
 python3 skills/ship-council/scripts/detect_surfaces.py <repo>
 python3 skills/ship-council/scripts/discover_commands.py <repo>
 python3 skills/ship-council/scripts/validate_artifacts.py <task-dir>
