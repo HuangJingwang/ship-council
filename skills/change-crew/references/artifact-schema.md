@@ -5,7 +5,7 @@ Artifacts make agent work inspectable and loopable.
 ## Required Files
 
 - `prd.md`: goal, non-goals, user stories, acceptance criteria, constraints, unknowns.
-- `ship-council.json`: machine-readable mode, state, loop, surface, and blocker status.
+- `change-crew.json`: machine-readable mode, state, loop, surface, and blocker status.
 - `surface-map.md`: detected surfaces, evidence, manual overrides, runtime assumptions.
 - `impact-analysis.md`: direct changes, consumers, data, permissions, compatibility, rollback, observability.
 - `research.md`: sources, findings, options, recommendation.

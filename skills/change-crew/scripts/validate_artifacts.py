@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate a Ship Council task workspace."""
+"""Validate a Change Crew task workspace."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 REQUIRED = [
-    "ship-council.json",
+    "change-crew.json",
     "prd.md",
     "surface-map.md",
     "impact-analysis.md",
@@ -88,22 +88,22 @@ def validate_findings(path: Path) -> list[str]:
 
 
 def validate_manifest(task_dir: Path) -> list[str]:
-    file = task_dir / "ship-council.json"
+    file = task_dir / "change-crew.json"
     if not file.exists():
-        return ["missing ship-council.json"]
+        return ["missing change-crew.json"]
     try:
         data = json.loads(file.read_text())
     except json.JSONDecodeError as exc:
-        return [f"ship-council.json: invalid JSON: {exc}"]
+        return [f"change-crew.json: invalid JSON: {exc}"]
     errors = []
     if data.get("state") not in MANIFEST_STATES:
-        errors.append("ship-council.json: invalid state")
+        errors.append("change-crew.json: invalid state")
     if data.get("mode") not in {"semi-auto", "auto"}:
-        errors.append("ship-council.json: mode must be semi-auto or auto")
+        errors.append("change-crew.json: mode must be semi-auto or auto")
     if not isinstance(data.get("loop_index"), int) or not isinstance(data.get("loop_limit"), int):
-        errors.append("ship-council.json: loop_index and loop_limit must be integers")
+        errors.append("change-crew.json: loop_index and loop_limit must be integers")
     if data.get("memory_update_policy") not in {"suggest-only", "auto-approved"}:
-        errors.append("ship-council.json: memory_update_policy must be suggest-only or auto-approved")
+        errors.append("change-crew.json: memory_update_policy must be suggest-only or auto-approved")
     return errors
 
 
@@ -149,7 +149,7 @@ def main() -> int:
     if errors:
         print("\n".join(errors))
         return 1
-    print("Ship Council artifacts valid")
+    print("Change Crew artifacts valid")
     return 0
 
 

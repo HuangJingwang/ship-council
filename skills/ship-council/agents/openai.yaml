@@ -1,6 +1,0 @@
-interface:
-  display_name: "Ship Council"
-  short_description: "Context-light delivery workflow for Codex"
-  default_prompt: "Use $ship-council only as much as this change needs. Start light, add agents and gates only for risk."
-policy:
-  allow_implicit_invocation: true

@@ -1,9 +1,9 @@
 ---
-name: ship-council
+name: change-crew
 description: Use when a software change is large, cross-surface, risky, needs multiple agents, independent critique, review/security/verification loops, or persistent project memory.
 ---
 
-# Ship Council
+# Change Crew
 
 ## Core Rule
 
@@ -26,12 +26,12 @@ Default to `quick` unless the user asks for council workflow, multiple agents, a
 Use scripts instead of reading templates into context:
 
 ```bash
-python3 skills/ship-council/scripts/init_task.py <repo> "<task title>"
-python3 skills/ship-council/scripts/detect_surfaces.py <repo>
-python3 skills/ship-council/scripts/discover_commands.py <repo>
+python3 skills/change-crew/scripts/init_task.py <repo> "<task title>"
+python3 skills/change-crew/scripts/detect_surfaces.py <repo>
+python3 skills/change-crew/scripts/discover_commands.py <repo>
 ```
 
-Use `scripts/init_memory.py <repo>` only when persistent memory is needed or `.ship-council/memory/` is missing and the task should record reusable constraints.
+Use `scripts/init_memory.py <repo>` only when persistent memory is needed or `.change-crew/memory/` is missing and the task should record reusable constraints.
 
 ## Gates
 
@@ -87,7 +87,7 @@ Memory is suggest-only by default. When the user explicitly says to remember a r
 Before changing long-term memory, run:
 
 ```bash
-python3 skills/ship-council/scripts/check_memory_conflicts.py <repo> <memory-file> --text "<proposed rule>"
+python3 skills/change-crew/scripts/check_memory_conflicts.py <repo> <memory-file> --text "<proposed rule>"
 ```
 
 If there is a conflict, show both rules and ask the user to keep, replace, or merge. Never silently overwrite memory.

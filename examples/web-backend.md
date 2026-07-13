@@ -3,7 +3,7 @@
 Prompt:
 
 ```text
-Use ship-council in auto mode, up to 3 fix loops, to add organization filtering to the work item list. Update backend and web.
+Use change-crew in auto mode, up to 3 fix loops, to add organization filtering to the work item list. Update backend and web.
 ```
 
 Expected flow:

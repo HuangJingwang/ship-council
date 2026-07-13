@@ -1,6 +1,6 @@
 # State Machine
 
-Ship Council is a state machine, not a free-form chat.
+Change Crew is a state machine, not a free-form chat.
 
 ## States
 

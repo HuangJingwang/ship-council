@@ -1,18 +1,18 @@
 # Demo: Organization Filter Across Web And Backend
 
-This demo shows the intended artifact shape for a Ship Council run.
+This demo shows the intended artifact shape for a Change Crew run.
 
 ## Prompt
 
 ```text
-Use ship-council in auto mode, up to 3 fix loops, to add organization filtering to the work item list. Update backend and web.
+Use change-crew in auto mode, up to 3 fix loops, to add organization filtering to the work item list. Update backend and web.
 ```
 
 ## Generated Workspace
 
 ```text
-.ship-council/tasks/2026-07-09-org-filter/
-  ship-council.json
+.change-crew/tasks/2026-07-09-org-filter/
+  change-crew.json
   prd.md
   surface-map.md
   impact-analysis.md

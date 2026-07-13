@@ -1,13 +1,13 @@
 # Memory Policy
 
-Ship Council uses file-backed memory to preserve project constraints across tasks without hiding them in chat history.
+Change Crew uses file-backed memory to preserve project constraints across tasks without hiding them in chat history.
 
 ## Memory Files
 
 Long-term memory lives under:
 
 ```text
-.ship-council/memory/
+.change-crew/memory/
   project-profile.md
   coding-constraints.md
   surface-map.md
@@ -21,7 +21,7 @@ Long-term memory lives under:
 
 At task start:
 
-1. If `.ship-council/memory/` exists, read the relevant files.
+1. If `.change-crew/memory/` exists, read the relevant files.
 2. Use memory as project guidance, not unquestionable truth.
 3. If memory conflicts with current code or user instructions, current code and user instructions win.
 4. Record conflicts in `impact-analysis.md` or `retrospective.md`.
@@ -80,7 +80,7 @@ Before updating long-term memory, you MUST complete these steps:
 5. Run or perform conflict detection.
 6. Record conflict status in `memory-suggestions.md`.
 7. Ask for user approval when required.
-8. Only then write `.ship-council/memory/...`.
+8. Only then write `.change-crew/memory/...`.
 
 Cannot complete every step? Do not write long-term memory yet.
 
@@ -104,7 +104,7 @@ At task end:
 1. Write `memory-suggestions.md`.
 2. Suggest only reusable knowledge, not one-off task details.
 3. Include evidence for every proposed memory update.
-4. In semi-auto mode, ask the user before updating `.ship-council/memory/`.
+4. In semi-auto mode, ask the user before updating `.change-crew/memory/`.
 5. In auto mode, do not update long-term memory unless the user explicitly allowed automatic memory writes.
 
 ## Conflict Detection
@@ -193,7 +193,7 @@ Choose one:
 4. Reject both and write a new rule
 ```
 
-Only update `.ship-council/memory/` after the user chooses. If the user chooses replacement, move the old rule to a `Superseded` or `History` section when the target memory file has one; otherwise annotate the replacement with the date and reason.
+Only update `.change-crew/memory/` after the user chooses. If the user chooses replacement, move the old rule to a `Superseded` or `History` section when the target memory file has one; otherwise annotate the replacement with the date and reason.
 
 ## What Belongs In Memory
 

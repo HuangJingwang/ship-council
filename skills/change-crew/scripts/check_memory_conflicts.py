@@ -116,7 +116,7 @@ def main() -> int:
     if not proposal:
         parser.error("proposed memory rule is empty")
 
-    memory_dir = repo / ".ship-council" / "memory"
+    memory_dir = repo / ".change-crew" / "memory"
     target = memory_dir / args.target_memory_file
     proposal_tokens = tokens(proposal)
     candidates = candidate_lines(target, proposal_tokens)

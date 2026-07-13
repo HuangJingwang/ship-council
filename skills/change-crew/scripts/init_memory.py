@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a Ship Council long-term memory directory."""
+"""Create a Change Crew long-term memory directory."""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ def main() -> int:
 
     skill_dir = Path(__file__).resolve().parents[1]
     templates = skill_dir / "assets" / "templates" / "memory"
-    memory_dir = repo / ".ship-council" / "memory"
+    memory_dir = repo / ".change-crew" / "memory"
     memory_dir.mkdir(parents=True, exist_ok=True)
 
     created = []

@@ -1,15 +1,15 @@
 {
-  "name": "ship-council",
-  "description": "Ship Council plugin marketplace for Claude Code and compatible agents.",
+  "name": "change-crew",
+  "description": "Change Crew plugin marketplace for Claude Code and compatible agents.",
   "owner": {
     "name": "HuangJingwang",
     "email": "huangjingwang@huangjingwang.com"
   },
   "plugins": [
     {
-      "name": "ship-council",
+      "name": "change-crew",
       "description": "Context-light delivery workflow for coordinated software changes.",
-      "version": "0.1.4",
+      "version": "0.2.0",
       "source": "./",
       "author": {
         "name": "HuangJingwang",

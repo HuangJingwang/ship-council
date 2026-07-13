@@ -1,6 +1,6 @@
 # Publish Quality
 
-Use this reference when preparing Ship Council for GitHub or a marketplace.
+Use this reference when preparing Change Crew for GitHub or a marketplace.
 
 ## Skill Quality
 

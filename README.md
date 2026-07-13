@@ -1,4 +1,4 @@
-# Ship Council
+# Change Crew
 
 > Context-light delivery workflow for Codex and SKILL.md-compatible coding agents.
 
@@ -6,7 +6,7 @@
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-black)](https://developers.openai.com/codex/skills)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-SKILL.md-blue)](https://agentskills.io)
 
-Ship Council starts light, then adds structure only when the change deserves it:
+Change Crew starts light, then adds structure only when the change deserves it:
 
 ```text
 quick scope -> implement -> review -> verify
@@ -15,7 +15,7 @@ standard/full risk -> contract -> agents -> critique -> review -> secure -> veri
 
 It is built for the part of AI coding that usually gets messy: cross-surface changes, hidden risks, vague handoffs, skipped verification, and agents that agree too quickly. It deliberately avoids loading every prompt, template, and agent brief up front.
 
-## Why Ship Council
+## Why Change Crew
 
 Most agentic coding failures happen at boundaries:
 
@@ -28,7 +28,7 @@ Most agentic coding failures happen at boundaries:
 - verification is claimed without command output;
 - agents debate forever instead of shipping.
 
-Ship Council makes those boundaries explicit with artifacts, gates, independent critique, and bounded fix loops.
+Change Crew makes those boundaries explicit with artifacts, gates, independent critique, and bounded fix loops.
 
 ## What You Get
 
@@ -51,21 +51,27 @@ Ship Council makes those boundaries explicit with artifacts, gates, independent 
 ### Codex Plugin
 
 ```bash
-codex plugin marketplace add HuangJingwang/ship-council
+codex plugin marketplace add HuangJingwang/change-crew
 ```
 
-Then open the Codex plugin directory, choose the Ship Council marketplace, and install `ship-council`.
+Then open the Codex plugin directory, choose the Change Crew marketplace, and install `change-crew`.
 
 After installing, restart Codex or start a new thread so bundled skills are reloaded.
 
 ### Claude Code Plugin
 
 ```text
-/plugin marketplace add HuangJingwang/ship-council
-/plugin install ship-council@ship-council
+/plugin marketplace add HuangJingwang/change-crew
+/plugin install change-crew@change-crew
 ```
 
 After installing, start a new Claude Code session before testing the skill.
+
+### Migrating From Ship Council
+
+The rename to Change Crew changes the repository, marketplace, plugin, skill, and generated workspace identifiers. GitHub redirects the old repository URL, but existing installations should remove the old plugin or skill and reinstall `change-crew`.
+
+Existing task data is not moved automatically. Rename `.ship-council/` to `.change-crew/` and rename each `ship-council.json` task manifest to `change-crew.json` before continuing a previous task.
 
 ### Manual Skill Install
 
@@ -73,8 +79,8 @@ After installing, start a new Claude Code session before testing the skill.
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/HuangJingwang/ship-council /tmp/ship-council
-cp -R /tmp/ship-council/skills/ship-council ~/.codex/skills/
+git clone https://github.com/HuangJingwang/change-crew /tmp/change-crew
+cp -R /tmp/change-crew/skills/change-crew ~/.codex/skills/
 ```
 
 Restart Codex after installing.
@@ -83,47 +89,47 @@ Restart Codex after installing.
 
 ```bash
 mkdir -p ~/.claude/skills
-git clone https://github.com/HuangJingwang/ship-council /tmp/ship-council
-cp -R /tmp/ship-council/skills/ship-council ~/.claude/skills/
+git clone https://github.com/HuangJingwang/change-crew /tmp/change-crew
+cp -R /tmp/change-crew/skills/change-crew ~/.claude/skills/
 ```
 
-For other agents, copy `skills/ship-council` into that agent's skills directory.
+For other agents, copy `skills/change-crew` into that agent's skills directory.
 
 ## Use
 
 Ask your agent to use the skill. For small tasks, prefer the quick profile:
 
 ```text
-Use ship-council in quick profile to fix this backend validation bug.
+Use change-crew in quick profile to fix this backend validation bug.
 ```
 
 For normal feature work:
 
 ```text
-Use ship-council to implement organization filtering in the work item list.
+Use change-crew to implement organization filtering in the work item list.
 ```
 
 For larger tasks:
 
 ```text
-Use ship-council in auto mode, up to 3 fix loops, to add password reset across web and backend.
+Use change-crew in auto mode, up to 3 fix loops, to add password reset across web and backend.
 ```
 
 For design-heavy UI work:
 
 ```text
-Use ship-council to redesign the onboarding flow. Route visual decisions through the design skill integration and require screenshot verification.
+Use change-crew to redesign the onboarding flow. Route visual decisions through the design skill integration and require screenshot verification.
 ```
 
 For plan stress-testing before implementation:
 
 ```text
-Use ship-council standard profile and run Grill Gate before freezing the contract.
+Use change-crew standard profile and run Grill Gate before freezing the contract.
 ```
 
 ## Modes
 
-Ship Council has two separate controls:
+Change Crew has two separate controls:
 
 - **Profile** controls prompt weight and workflow depth: `quick`, `standard`, or `full`.
 - **Mode** controls autonomy: `semi-auto` or `auto`.
@@ -140,7 +146,7 @@ Default behavior is intentionally light. The agent should not read every referen
 
 ## Context Loading
 
-Ship Council is intentionally split into many files, but they are not meant to load together.
+Change Crew is intentionally split into many files, but they are not meant to load together.
 
 The loading model is:
 
@@ -192,11 +198,11 @@ flowchart LR
 
 ## Generated Task Workspace
 
-Ship Council writes inspectable files into the target repository:
+Change Crew writes inspectable files into the target repository:
 
 ```text
-.ship-council/tasks/2026-07-09-org-filter/
-  ship-council.json
+.change-crew/tasks/2026-07-09-org-filter/
+  change-crew.json
   prd.md
   surface-map.md
   impact-analysis.md
@@ -219,7 +225,7 @@ Ship Council writes inspectable files into the target repository:
 Long-term project knowledge can live beside task history:
 
 ```text
-.ship-council/memory/
+.change-crew/memory/
   project-profile.md
   coding-constraints.md
   surface-map.md
@@ -229,8 +235,8 @@ Long-term project knowledge can live beside task history:
   lessons-learned.md
 ```
 
-By default, Ship Council suggests memory updates instead of silently writing long-term memory.
-If a new rule conflicts with existing memory, Ship Council must show both rules and ask which one to keep, replace, or merge.
+By default, Change Crew suggests memory updates instead of silently writing long-term memory.
+If a new rule conflicts with existing memory, Change Crew must show both rules and ask which one to keep, replace, or merge.
 
 ## Design Principles
 
@@ -259,7 +265,7 @@ If a new rule conflicts with existing memory, Ship Council must show both rules 
 .agents/plugins/marketplace.json
 .claude-plugin/plugin.json
 .claude-plugin/marketplace.json
-skills/ship-council/
+skills/change-crew/
   SKILL.md
   agents/openai.yaml
   references/
@@ -271,13 +277,13 @@ skills/ship-council/
 ## Included Scripts
 
 ```bash
-python3 skills/ship-council/scripts/init_task.py <repo> "task title"
-python3 skills/ship-council/scripts/init_memory.py <repo>
-python3 skills/ship-council/scripts/check_memory_conflicts.py <repo> verification-recipes.md --text "rule"
-python3 skills/ship-council/scripts/detect_surfaces.py <repo>
-python3 skills/ship-council/scripts/discover_commands.py <repo>
-python3 skills/ship-council/scripts/validate_artifacts.py <task-dir>
-python3 skills/ship-council/scripts/merge_findings.py <task-dir>
+python3 skills/change-crew/scripts/init_task.py <repo> "task title"
+python3 skills/change-crew/scripts/init_memory.py <repo>
+python3 skills/change-crew/scripts/check_memory_conflicts.py <repo> verification-recipes.md --text "rule"
+python3 skills/change-crew/scripts/detect_surfaces.py <repo>
+python3 skills/change-crew/scripts/discover_commands.py <repo>
+python3 skills/change-crew/scripts/validate_artifacts.py <task-dir>
+python3 skills/change-crew/scripts/merge_findings.py <task-dir>
 ```
 
 ## Examples
@@ -292,9 +298,9 @@ python3 skills/ship-council/scripts/merge_findings.py <task-dir>
 | Problem | Fix |
 | --- | --- |
 | Plugin does not appear in Codex | Run `codex plugin marketplace list`, then restart Codex. |
-| Skill does not trigger automatically | Invoke it explicitly with `ship-council` or choose the bundled skill from the plugin. |
+| Skill does not trigger automatically | Invoke it explicitly with `change-crew` or choose the bundled skill from the plugin. |
 | Updated plugin still shows old behavior | Upgrade the marketplace, reinstall the plugin, and start a new thread. |
-| Manual skill install not detected | Confirm `skills/ship-council/SKILL.md` is under your agent's skills directory and restart the agent. |
+| Manual skill install not detected | Confirm `skills/change-crew/SKILL.md` is under your agent's skills directory and restart the agent. |
 
 ## Roadmap
 
@@ -304,7 +310,7 @@ python3 skills/ship-council/scripts/merge_findings.py <task-dir>
 
 ## Security
 
-Ship Council includes executable helper scripts. Review them before installing from any fork. Review and security agents are intentionally read-only, and generated findings must include concrete evidence before they can block completion.
+Change Crew includes executable helper scripts. Review them before installing from any fork. Review and security agents are intentionally read-only, and generated findings must include concrete evidence before they can block completion.
 
 ## Contributing
 
