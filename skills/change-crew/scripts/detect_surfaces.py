@@ -23,7 +23,7 @@ SKIP_DIRS = {
     ".git",
     ".gradle",
     ".idea",
-    ".ship-council",
+    ".change-crew",
     ".vite",
     ".vscode",
     "build",

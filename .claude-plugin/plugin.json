@@ -1,13 +1,13 @@
 {
-  "name": "ship-council",
+  "name": "change-crew",
   "description": "Context-light delivery workflow for coordinated software changes.",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "author": {
     "name": "HuangJingwang",
     "email": "huangjingwang@huangjingwang.com"
   },
-  "homepage": "https://github.com/HuangJingwang/ship-council",
-  "repository": "https://github.com/HuangJingwang/ship-council",
+  "homepage": "https://github.com/HuangJingwang/change-crew",
+  "repository": "https://github.com/HuangJingwang/change-crew",
   "license": "MIT",
   "keywords": [
     "skills",

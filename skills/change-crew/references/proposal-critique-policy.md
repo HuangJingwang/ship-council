@@ -1,6 +1,6 @@
 # Proposal Critique Policy
 
-Use this policy whenever Ship Council produces a proposal that asks the user to approve direction, scope, contract, implementation plan, or final acceptance.
+Use this policy whenever Change Crew produces a proposal that asks the user to approve direction, scope, contract, implementation plan, or final acceptance.
 
 The critic is independent from the proposal author. It does not implement code and does not rewrite the proposal directly. Its job is to reduce agreement bias, optimism bias, and vague approval-seeking.
 

@@ -1,11 +1,11 @@
 {
-  "name": "ship-council",
+  "name": "change-crew",
   "interface": {
-    "displayName": "Ship Council"
+    "displayName": "Change Crew"
   },
   "plugins": [
     {
-      "name": "ship-council",
+      "name": "change-crew",
       "source": {
         "source": "local",
         "path": "./"

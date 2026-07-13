@@ -2,7 +2,7 @@
 
 Use this reference when a task touches web UI, mobile UI, visual styling, responsive layout, component composition, Figma, motion, or design-system consistency.
 
-Ship Council is the delivery orchestrator. Do not copy a specialist design skill into the workflow. Route to the right design skill or apply its principles, then keep the resulting constraints in Ship Council artifacts.
+Change Crew is the delivery orchestrator. Do not copy a specialist design skill into the workflow. Route to the right design skill or apply its principles, then keep the resulting constraints in Change Crew artifacts.
 
 ## Reference Skills
 

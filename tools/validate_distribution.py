@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Ship Council packaging without machine-local dependencies."""
+"""Validate Change Crew packaging without machine-local dependencies."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / "skills" / "ship-council"
+SKILL = ROOT / "skills" / "change-crew"
 
 
 def fail(message: str) -> None:
@@ -113,8 +113,8 @@ def validate_plugin_manifest() -> None:
     for field in required:
         if field not in manifest:
             fail(f"{manifest_path}: missing {field}")
-    if manifest["name"] != "ship-council":
-        fail("plugin name must be ship-council")
+    if manifest["name"] != "change-crew":
+        fail("plugin name must be change-crew")
     if manifest["skills"] != "./skills/":
         fail("plugin skills path must be ./skills/")
     if not (ROOT / manifest["skills"]).is_dir():
@@ -127,14 +127,14 @@ def validate_plugin_manifest() -> None:
 
 def validate_marketplace(path: Path, *, codex: bool) -> None:
     data = load_json(path)
-    if data.get("name") != "ship-council":
-        fail(f"{path}: marketplace name must be ship-council")
+    if data.get("name") != "change-crew":
+        fail(f"{path}: marketplace name must be change-crew")
     plugins = data.get("plugins")
     if not isinstance(plugins, list) or len(plugins) != 1:
         fail(f"{path}: expected one plugin entry")
     plugin = plugins[0]
-    if plugin.get("name") != "ship-council":
-        fail(f"{path}: plugin entry must be ship-council")
+    if plugin.get("name") != "change-crew":
+        fail(f"{path}: plugin entry must be change-crew")
     source = plugin.get("source")
     rel = source.get("path") if isinstance(source, dict) else source
     if rel != "./":
@@ -161,7 +161,7 @@ def run_smoke_tests() -> None:
             ["python3", str(SKILL / "scripts" / "validate_artifacts.py"), task_output]
         )
         subprocess.check_call(["python3", str(SKILL / "scripts" / "init_memory.py"), str(repo)])
-        memory_file = repo / ".ship-council" / "memory" / "verification-recipes.md"
+        memory_file = repo / ".change-crew" / "memory" / "verification-recipes.md"
         with memory_file.open("a", encoding="utf-8") as handle:
             handle.write("\n## Integration Tests\n\n- Before e2e tests, start backend before frontend.\n")
         conflict = subprocess.check_output(
@@ -178,7 +178,7 @@ def run_smoke_tests() -> None:
         payload = json.loads(conflict)
         if not payload["candidate_existing_rules"]:
             fail("memory conflict smoke test did not find a candidate rule")
-    shutil.rmtree(ROOT / ".ship-council", ignore_errors=True)
+    shutil.rmtree(ROOT / ".change-crew", ignore_errors=True)
 
 
 def main() -> None:
@@ -188,7 +188,7 @@ def main() -> None:
     validate_marketplace(ROOT / ".claude-plugin" / "marketplace.json", codex=False)
     load_json(ROOT / ".claude-plugin" / "plugin.json")
     run_smoke_tests()
-    print("Ship Council distribution valid")
+    print("Change Crew distribution valid")
 
 
 if __name__ == "__main__":

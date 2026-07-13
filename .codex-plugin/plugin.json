@@ -1,14 +1,14 @@
 {
-  "name": "ship-council",
-  "version": "0.1.4",
+  "name": "change-crew",
+  "version": "0.2.0",
   "description": "Context-light delivery workflow for coordinated software changes.",
   "author": {
     "name": "HuangJingwang",
     "email": "huangjingwang@huangjingwang.com",
     "url": "https://github.com/HuangJingwang"
   },
-  "homepage": "https://github.com/HuangJingwang/ship-council",
-  "repository": "https://github.com/HuangJingwang/ship-council",
+  "homepage": "https://github.com/HuangJingwang/change-crew",
+  "repository": "https://github.com/HuangJingwang/change-crew",
   "license": "MIT",
   "keywords": [
     "codex",
@@ -22,9 +22,9 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Ship Council",
+    "displayName": "Change Crew",
     "shortDescription": "Coordinate software delivery without prompt bloat.",
-    "longDescription": "Ship Council starts light, then adds high-density agent briefs, Grill Gate questioning, artifacts, critique, review, security checks, verification, and fix loops only when task risk justifies them.",
+    "longDescription": "Change Crew starts light, then adds high-density agent briefs, Grill Gate questioning, artifacts, critique, review, security checks, verification, and fix loops only when task risk justifies them.",
     "developerName": "HuangJingwang",
     "category": "Development",
     "capabilities": [
@@ -34,13 +34,13 @@
       "Security",
       "Verification"
     ],
-    "websiteURL": "https://github.com/HuangJingwang/ship-council",
-    "privacyPolicyURL": "https://github.com/HuangJingwang/ship-council#security",
-    "termsOfServiceURL": "https://github.com/HuangJingwang/ship-council#license",
+    "websiteURL": "https://github.com/HuangJingwang/change-crew",
+    "privacyPolicyURL": "https://github.com/HuangJingwang/change-crew#security",
+    "termsOfServiceURL": "https://github.com/HuangJingwang/change-crew#license",
     "defaultPrompt": [
-      "Use ship-council in quick profile for this small change.",
-      "Use ship-council in standard profile to plan, implement, review, and verify this change.",
-      "Use ship-council in full profile for this risky multi-surface change."
+      "Use change-crew in quick profile for this small change.",
+      "Use change-crew in standard profile to plan, implement, review, and verify this change.",
+      "Use change-crew in full profile for this risky multi-surface change."
     ],
     "brandColor": "#2563EB"
   }

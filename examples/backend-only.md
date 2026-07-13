@@ -3,7 +3,7 @@
 Prompt:
 
 ```text
-Use ship-council to add an audit field to the user export API. Backend only. Semi-auto mode.
+Use change-crew to add an audit field to the user export API. Backend only. Semi-auto mode.
 ```
 
 Expected flow:
@@ -26,7 +26,7 @@ DONE
 Expected artifacts:
 
 ```text
-.ship-council/tasks/<date>-audit-field/
+.change-crew/tasks/<date>-audit-field/
   prd.md
   impact-analysis.md
   contract.md

@@ -11,7 +11,7 @@ from pathlib import Path
 SKIP_DIRS = {
     ".git",
     ".gradle",
-    ".ship-council",
+    ".change-crew",
     ".vite",
     "build",
     "dist",

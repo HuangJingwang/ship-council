@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a Ship Council task workspace from bundled templates."""
+"""Create a Change Crew task workspace from bundled templates."""
 
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ def main() -> int:
     skill_dir = Path(__file__).resolve().parents[1]
     templates = skill_dir / "assets" / "templates"
     task_id = f"{date.today().isoformat()}-{slugify(args.title)}"
-    task_dir = repo / ".ship-council" / "tasks" / task_id
+    task_dir = repo / ".change-crew" / "tasks" / task_id
     task_dir.mkdir(parents=True, exist_ok=True)
     (task_dir / "findings").mkdir(exist_ok=True)
     (task_dir / "fix-packets").mkdir(exist_ok=True)
@@ -55,9 +55,9 @@ def main() -> int:
         if not dest.exists():
             shutil.copyfile(templates / name, dest)
 
-    manifest = task_dir / "ship-council.json"
+    manifest = task_dir / "change-crew.json"
     if not manifest.exists():
-        data = json.loads((templates / "ship-council.json").read_text())
+        data = json.loads((templates / "change-crew.json").read_text())
         data["task_id"] = task_id
         data["created_at"] = date.today().isoformat()
         manifest.write_text(json.dumps(data, indent=2) + "\n")
